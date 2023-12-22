@@ -24,4 +24,12 @@ const lesson = computed(()=>{
       (lesson) => lesson.slug === route.params.lessonSlug
   );
 });
+
+const title = computed(
+    () => `${chapter.value.title} - ${lesson.value.title}`
+)
+
+useHead({
+  title,
+})
 </script>

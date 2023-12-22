@@ -26,7 +26,8 @@
           <NuxtLink :to="lesson.path"
              v-for="(lesson,index) in chapter.lessons"
              :key="lesson.slug"
-             class="flex flex-row space-x-1 no-underline prose-sm font-normal py-1 px-4 -mx-4"
+             class="flex flex-row space-x-1 no-underline prose-sm font-normal py-1 px-4 -mx-4 text-gray-600"
+            :class="{'text-blue-500': lesson.path === $route.fullPath}"
           >
             <span>{{index + 1}}.</span> <span>{{lesson.title}}</span></NuxtLink>
         </div>
@@ -42,3 +43,9 @@
 <script setup>
 const { chapters } = useCourse();
 </script>
+
+<style scoped>
+.router-link-active{
+  @apply text-blue-500;
+}
+</style>
