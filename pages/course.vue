@@ -23,7 +23,7 @@
             :key="chapter.slug"
         >
           <h4>{{chapter.title}}</h4>
-          <NuxtLink :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`"
+          <NuxtLink :to="lesson.path"
              v-for="(lesson,index) in chapter.lessons"
              :key="lesson.slug"
              class="flex flex-row space-x-1 no-underline prose-sm font-normal py-1 px-4 -mx-4"
