@@ -1,12 +1,16 @@
 <template>
-  <p class="mt-0 uppercase font-bold text-slate-400 mb-1">Lesson {{chapter.number}} - {{lesson.number}}</p>
-  <h2 class="my-0">{{lesson.title}}</h2>
+  <p class="mt-0 uppercase font-bold text-slate-400 mb-1">Lesson {{ chapter.number }} - {{ lesson.number }}</p>
+  <h2 class="my-0">{{ lesson.title }}</h2>
   <div class="flex space-x-4 mt-2 mb-8">
-    <NuxtLink v-if="lesson.sourceUrl" :to="lesson.sourceUrl" class="font-normal text-md text-gray-500"> Download Source Code</NuxtLink>
-    <NuxtLink v-if="lesson.downloadUrl" :to="lesson.downloadUrl" class="font-normal text-md text-gray-500"> Download Video</NuxtLink>
+    <NuxtLink v-if="lesson.sourceUrl" :to="lesson.sourceUrl" class="font-normal text-md text-gray-500"> Download Source
+      Code
+    </NuxtLink>
+    <NuxtLink v-if="lesson.downloadUrl" :to="lesson.downloadUrl" class="font-normal text-md text-gray-500"> Download
+      Video
+    </NuxtLink>
   </div>
   <VideoPlayer :video-id="lesson.videoId"/>
-  <p>{{lesson.text}}</p>
+  <p>{{ lesson.text }}</p>
   <LessonCompleteButton :model-value="isLessonComplete" @update:model-value="toggleComplete"/>
 </template>
 
@@ -17,11 +21,11 @@ const course = useCourse();
 const route = useRoute();
 
 definePageMeta({
-  middleware: function({params},from){
+  middleware: function ({params}, from) {
     const course = useCourse();
 
-    const chapter = course.chapters.find( (chapter) => chapter.slug === params.chapterSlug );
-    if(!chapter){
+    const chapter = course.chapters.find((chapter) => chapter.slug === params.chapterSlug);
+    if (!chapter) {
       return abortNavigation(createError({
         statusCode: 404,
         message: 'Chapter not found'
@@ -29,8 +33,8 @@ definePageMeta({
     }
 
     const lesson =
-      chapter.lessons.find((lesson) => lesson.slug === params.lessonSlug);
-    if(!lesson){
+        chapter.lessons.find((lesson) => lesson.slug === params.lessonSlug);
+    if (!lesson) {
       return abortNavigation(createError({
         statusCode: 404,
         message: 'Lesson not found'
@@ -39,17 +43,17 @@ definePageMeta({
   }
 })
 
-if (route.params.lessonSlug === '3-typing-component-events'){
+if (route.params.lessonSlug === '3-typing-component-events') {
   console.log(route.params.paramthatdoesntexist.capitalizeIsNotAMethod());
 }
 
-const chapter = computed(()=>{
+const chapter = computed(() => {
   return course.chapters.find(
       (chapter) => chapter.slug === route.params.chapterSlug
   );
 });
 
-const lesson = computed(()=>{
+const lesson = computed(() => {
   return chapter.value.lessons.find(
       (lesson) => lesson.slug === route.params.lessonSlug
   );
@@ -66,11 +70,11 @@ useHead({
 const progress = useLocalStorage('progress', []);
 
 const isLessonComplete = computed(() => {
-  if (!progress.value[chapter.value.number - 1]){
+  if (!progress.value[chapter.value.number - 1]) {
     return false;
   }
 
-  if(!progress.value[chapter.value.number - 1][lesson.value.number - 1]){
+  if (!progress.value[chapter.value.number - 1][lesson.value.number - 1]) {
     return false;
   }
 
@@ -78,7 +82,7 @@ const isLessonComplete = computed(() => {
 });
 
 const toggleComplete = () => {
-  if (!progress.value[chapter.value.number - 1]){
+  if (!progress.value[chapter.value.number - 1]) {
     progress.value[chapter.value.number - 1] = [];
   }
   progress.value[chapter.value.number - 1][lesson.value.number - 1] = !isLessonComplete.value;
