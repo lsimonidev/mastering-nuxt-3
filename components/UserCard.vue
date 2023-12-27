@@ -1,0 +1,20 @@
+<template>
+<div v-if="user" class="rounded p-3 flex items-center space-x-3 bg-white ">
+  <img :src="profile" :alt="name" class="rounded-full w-12 h12 border-2 bg-blue-400">
+  <div class="text-right">
+    <div class="font-medium">{{name}}</div>
+    <button class="text-sm underline text-slate-500">Logout</button>
+  </div>
+</div>
+</template>
+<script setup lang="ts">
+const user = useSupabaseUser();
+
+const name = computed(
+    () =>  user?.value.user_metadata.full_name
+);
+
+const profile = computed(
+    () => user?.value.user_metadata.avatar_urls
+);
+</script>
