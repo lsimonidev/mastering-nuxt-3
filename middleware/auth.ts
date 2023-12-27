@@ -4,4 +4,4 @@ export default defineNuxtRouteMiddleware((to, from) => {
         return;
     }
     return navigateTo('/login');
-})
+});
