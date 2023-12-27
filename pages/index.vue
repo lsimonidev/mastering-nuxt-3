@@ -8,8 +8,6 @@
         <NuxtLink class="underline font-medium" to="/login">Login</NuxtLink>
       </li>
     </ul>
-
-
   </div>
 
 </template>
