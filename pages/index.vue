@@ -1,11 +1,18 @@
 <template>
   <div class="prose mb-12">
-    <h1>
-        <span class="font-medium">
-          Course:
-          <span><NuxtLink class="font-bold no-underline" to="course">Mastering Nuxt 3</NuxtLink></span>
-        </span>
-    </h1>
+    <ul class="list-none">
+      <li>
+        <NuxtLink :to="firstLesson.path" class="underline font-medium">Go to First Lesson</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink class="underline font-medium" to="/login">Login</NuxtLink>
+      </li>
+    </ul>
+
+
   </div>
 
 </template>
+<script lang="ts" setup>
+const firstLesson = useFirstLesson();
+</script>

@@ -1,11 +1,8 @@
 <template>
   <div>
     <div class="prose mb-12">
-      <h1>
-        <span class="font-medium">
-          Course:
-          <span class="font-bold">Mastering Nuxt 3</span>
-        </span>
+      <h1 class="font-bold">
+        {{ title }}
       </h1>
     </div>
 
@@ -58,7 +55,7 @@
 </template>
 
 <script setup>
-const {chapters} = useCourse();
+const {chapters, title} = useCourse();
 const resetError = async (error) => {
   await navigateTo('/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript-with-vue-js-3');
   error.value = null;
