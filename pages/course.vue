@@ -45,7 +45,7 @@
               <code>{{ error }}</code>
             </p>
             <p>
-              <button @click="resetError(error)">Try Again</button>
+              <button class="rounded text-white font-bold py-2 px-4 cursor-pointer bg-gray-500" @click="resetError(error)">Try Again</button>
             </p>
           </template>
         </NuxtErrorBoundary>
@@ -55,7 +55,8 @@
 
 <script setup>
 const { chapters } = useCourse();
-const resetError = (error) => {
+const resetError = async (error) => {
+  await navigateTo('/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript-with-vue-js-3');
   error.value = null;
 }
 </script>
